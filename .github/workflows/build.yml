@@ -16,7 +16,7 @@ jobs:
 
       - name: Fix User Agent for Redmi
         run: |
-          sed -i 's/s.setUserAgentString(s.getUserAgentString() + " AgarzAcc\/" + accountId);/s.setUserAgentString("Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36");/g' AgarzMulti/app/src/main/java/com/agarz/multi/WebViewFragment.java
+          sed -i 's|s.setUserAgentString(s.getUserAgentString() + " AgarzAcc/" + accountId);|s.setUserAgentString("Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36 AgarzAcc/" + accountId);|g' AgarzMulti/app/src/main/java/com/agarz/multi/WebViewFragment.java
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -30,17 +30,15 @@ jobs:
       - name: Accept licenses
         run: yes | sdkmanager --licenses || true
 
-      - name: Install Gradle
-        run: |
-          wget -q https://services.gradle.org/distributions/gradle-8.2-bin.zip
-          unzip -q gradle-8.2-bin.zip
-          echo "$(pwd)/gradle-8.2/bin" >> $GITHUB_PATH
-
       - name: Build APK
-        run: cd AgarzMulti && gradle assembleDebug
+        run: |
+          cd AgarzMulti
+          chmod +x gradlew
+          ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: AgarzMulti-APK
           path: AgarzMulti/app/build/outputs/apk/debug/app-debug.apk
+          
