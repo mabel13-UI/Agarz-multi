@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#00d4ff</item>
+        <item name="colorPrimaryDark">#0077ff</item>
+        <item name="colorAccent">#00d4ff</item>
+        <item name="android:windowBackground">#080c10</item>
+        <item name="android:statusBarColor">#0e1520</item>
+        <item name="android:navigationBarColor">#0e1520</item>
+    </style>
+
+    <style name="TabTextStyle" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

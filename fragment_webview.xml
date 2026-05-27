@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#080c10">
+
+    <!-- Üst bilgi çubuğu -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal"
+        android:background="#0e1520"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:gravity="center_vertical">
+
+        <!-- Skor -->
+        <TextView
+            android:id="@+id/tvScore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="0"
+            android:textColor="#00d4ff"
+            android:textSize="16sp"
+            android:fontFamily="monospace"
+            android:textStyle="bold"/>
+
+        <!-- Bot durum mesajı -->
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="—"
+            android:textColor="#4a6480"
+            android:textSize="10sp"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <!-- Bot aç/kapat butonu -->
+        <Button
+            android:id="@+id/btnBot"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:text="🤖 BOT: KAPALI"
+            android:textSize="9sp"
+            android:textColor="#ffffff"
+            android:background="#D50000"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <!-- WebView oyun alanı -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"/>
+
+        <!-- Yükleme çubuğu -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_gravity="top"
+            android:progressTint="#00d4ff"
+            android:progressBackgroundTint="#0e1520"
+            android:max="100"
+            android:visibility="gone"/>
+
+    </FrameLayout>
+
+</LinearLayout>
