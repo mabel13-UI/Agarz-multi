@@ -26,11 +26,17 @@ jobs:
       - name: Accept licenses
         run: yes | sdkmanager --licenses || true
 
-      - name: Make gradlew executable
-        run: chmod +x AgarzMulti/gradlew
+      - name: Install Gradle
+        run: |
+          wget -q https://services.gradle.org/distributions/gradle-8.2-bin.zip
+          unzip -q gradle-8.2-bin.zip
+          export PATH=$PATH:$(pwd)/gradle-8.2/bin
+          echo "$(pwd)/gradle-8.2/bin" >> $GITHUB_PATH
 
       - name: Build APK
-        run: cd AgarzMulti && ./gradlew assembleDebug --stacktrace
+        run: |
+          cd AgarzMulti
+          gradle assembleDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
