@@ -14,6 +14,10 @@ jobs:
       - name: Unzip project
         run: unzip AgarzMulti.zip -d .
 
+      - name: Fix User Agent for Redmi
+        run: |
+          sed -i 's/s.setUserAgentString(s.getUserAgentString() + " AgarzAcc\/" + accountId);/s.setUserAgentString("Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36");/g' AgarzMulti/app/src/main/java/com/agarz/multi/WebViewFragment.java
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -30,13 +34,10 @@ jobs:
         run: |
           wget -q https://services.gradle.org/distributions/gradle-8.2-bin.zip
           unzip -q gradle-8.2-bin.zip
-          export PATH=$PATH:$(pwd)/gradle-8.2/bin
           echo "$(pwd)/gradle-8.2/bin" >> $GITHUB_PATH
 
       - name: Build APK
-        run: |
-          cd AgarzMulti
-          gradle assembleDebug --stacktrace
+        run: cd AgarzMulti && gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
